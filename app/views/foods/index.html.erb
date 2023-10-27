@@ -1,0 +1,19 @@
+<%= form_with url: '/foods', method: :get, local: true do |form| %>
+  <%= form.text_field :q, placeholder: "Search for foods" %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @foods %>
+  <h1>Total Results: <%= @foods[:total] %></h1>
+
+  <ul>
+    <% @foods[:foods].each do |food| %>
+      <li>
+        <p><strong>GTIN/UPC:</strong> <%= food.gtin_upc %></p>
+        <p><strong>Description:</strong> <%= food.description %></p>
+        <p><strong>Brand Owner:</strong> <%= food.brand_owner %></p>
+        <p><strong>Ingredients:</strong> <%= food.ingredients %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
